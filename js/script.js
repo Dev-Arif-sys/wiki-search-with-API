@@ -2,10 +2,11 @@
 let spinner=document.getElementById("spinner")
 document.getElementById("search-btn").onclick= async(e)=>{
     spinner.style.display="block"
-  let searchValue=document.getElementById("input-field").value;
+  let searchValue=document.getElementById("input-field");
 //   console.log(searchValue)
     e.preventDefault()
-    let url=`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchValue}`
+    let url=`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchValue.value}`
+    searchValue.value="";
     let res=await fetch(url);
     if(res){
         spinner.style.display="none"
@@ -17,6 +18,7 @@ document.getElementById("search-btn").onclick= async(e)=>{
 function displayData(data){
     console.log(data.query.search)
     let resultContainer=document.getElementById("search-result")
+    resultContainer.textContent="";
     let searchArray=data.query.search;
     searchArray.forEach(value=>{
         let div=document.createElement("div");
