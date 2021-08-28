@@ -1,11 +1,15 @@
 
-console.log("clicked")
+let spinner=document.getElementById("spinner")
 document.getElementById("search-btn").onclick= async(e)=>{
+    spinner.style.display="block"
   let searchValue=document.getElementById("input-field").value;
 //   console.log(searchValue)
     e.preventDefault()
     let url=`https://en.wikipedia.org/w/api.php?action=query&list=search&prop=info&inprop=url&utf8=&format=json&origin=*&srlimit=20&srsearch=${searchValue}`
     let res=await fetch(url);
+    if(res){
+        spinner.style.display="none"
+    }
     let data= await res.json();
     displayData(data)
 }

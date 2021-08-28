@@ -3,3 +3,9 @@
 .title-link{
     text-decoration: none;
 }
+#spinner{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    display: none;
+}
